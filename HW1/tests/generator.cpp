@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cmath>
 
 int gen1() {
   return abs(rand() % 100);
@@ -11,7 +12,7 @@ int gen2() {
 }
 
 double gen3() {
-  return fabs(rand() * 10 / (rand() + 1));
+  return fabs(rand() * 10) / fabs(rand() + 1);
 }
 
 int main() {

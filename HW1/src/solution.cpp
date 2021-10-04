@@ -1,5 +1,7 @@
 #include "./solution.h"
 
+const char* names[3] = {"Car", "Bus", "Truck"};
+
 void input(Auto& object) {
   int fuel_capacity;
   double fuel_spending;
@@ -45,10 +47,27 @@ bool compare(const Auto& lhs, const Auto& rhs) {
   return calculateDistance(lhs) < calculateDistance(rhs);
 }
 
+void smartFill(const Auto& l, Auto& r) {
+  r.fuel_capacity = l.fuel_capacity;
+  r.fuel_spending = l.fuel_spending;
+  r.transport = l.transport;
+
+  r._bus.passangers = l._bus.passangers;
+  r._car.speed = l._car.speed;
+  r._truck.weight = l._truck.weight;
+}
+
+void swap(Auto& l, Auto& r) {
+  Auto temp_entity;
+  smartFill(l, temp_entity);
+  smartFill(r, l);
+  smartFill(temp_entity, r);
+}
+
 void inclusionSort(Container& container) {
   for (size_t i = 1; i < container.size; i++) {
     for (size_t j = i; j > 0 && compare(container.array[j], container.array[j - 1]); j--) {
-      std::swap(container.array[j], container.array[j - 1]);
+      swap(container.array[j], container.array[j - 1]);
     }
   }
 }

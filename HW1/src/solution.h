@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-const char* names[3] = {"Car", "Bus", "Truck"};
-
 struct Car {
   short speed;
 };
@@ -43,5 +41,9 @@ void output(const Auto& object);
 double calculateDistance(const Auto& object);
 
 bool compare(const Auto& lhs, const Auto& rhs);
+
+void smartFill(const Auto& l, Auto& r);
+
+void swap(Auto& l, Auto& r);
 
 void inclusionSort(Container& container);

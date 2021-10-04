@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.16)
 
 project("HW1")
 
-add_subdirectory(src)
+set(SRC main.cpp src/solution.cpp)
 
-add_executable(hw1 tests.cpp)
+add_executable(hw1 ${SRC})
 
 set_target_properties(
 	hw1 PROPERTIES
