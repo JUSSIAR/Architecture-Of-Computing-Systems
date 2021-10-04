@@ -3,24 +3,26 @@
 const char* names[3] = {"Car", "Bus", "Truck"};
 
 void input(Auto& object) {
-  int fuel_capacity;
-  double fuel_spending;
   int value_type;
-  scanf("%d %lf %d ", &fuel_capacity, &fuel_spending, &value_type);
+
+  scanf("%d ", &object.fuel_capacity);
+  scanf("%lf ", &object.fuel_spending);
+  scanf("%d ", &value_type);
+
   switch (value_type) {
     case 1: {
       object.transport = Auto::Type::CAR;
-      scanf("%d\n", object._car.speed);
+      scanf("%d\n", &object._car.speed);
       break;
     }
     case 2: {
       object.transport = Auto::Type::BUS;
-      scanf("%d\n", object._bus.passangers);
+      scanf("%d\n", &object._bus.passangers);
       break;
     }
     case 3: {
       object.transport = Auto::Type::TRUCK;
-      scanf("%d\n", object._truck.weight);
+      scanf("%d\n", &object._truck.weight);
       break;
     }
     default: {
@@ -32,7 +34,7 @@ void input(Auto& object) {
 void output(const Auto& object) {
   printf(
     "%s maxDistance = %lf\n", 
-    names[object.transport],
+    names[object.transport - 1],
     calculateDistance(object)
   );
 }

@@ -6,7 +6,7 @@ int main(int argc, char** argv) {
   freopen(argv[2], "w", stdout);
 
   int count;
-  scanf("%d", count);
+  scanf("%d\n", &count);
 
   Container container;
   container.array = new Auto[count];
