@@ -2,14 +2,6 @@
 
 const char* names[3] = {"Car", "Bus", "Truck"};
 
-void Auto::printFuelCapacity(std::ofstream& output) const {
-  output << fuel_capacity_ << ' ';
-}
-
-void Auto::printFuelSpending(std::ofstream& output) const {
-  output << fuel_spending_ << ' ';
-}
-
 double Auto::calculateDistance() const {
   double fc = static_cast<double>(fuel_capacity_);
   double fs = static_cast<double>(fuel_spending_);
@@ -18,10 +10,6 @@ double Auto::calculateDistance() const {
 
 AutoId Auto::getTransport() const {
   return transport_;
-}
-
-void Auto::printOwnValue(std::ofstream& output) const {
-  output << "Parent class object" << std::endl;
 }
 
 void InteractiveController::input(std::ifstream& input, Container& container) {
@@ -67,10 +55,13 @@ void InteractiveController::input(std::ifstream& input, Container& container) {
 }
 
 void InteractiveController::output(std::ofstream& output, const Container& container) {
+  output.precision(6);
+  output << std::fixed;
   for (size_t item = 0; item < container.size; item++) {
     output << names[container.array[item]->getTransport()];
-    output << "maxDistance = ";
+    output << " maxDistance = ";
     output << container.array[item]->calculateDistance();
+    output << "\n";
   }
 }
 

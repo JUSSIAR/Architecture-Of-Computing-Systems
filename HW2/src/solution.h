@@ -17,12 +17,8 @@ class Auto {
     {}
     ~Auto() = default;
 
-    void printFuelCapacity(std::ofstream& output) const;
-    void printFuelSpending(std::ofstream& output) const;
     double calculateDistance() const;
     AutoId getTransport() const;
-
-    virtual void printOwnValue(std::ofstream& output) const;
 
   private:
     int fuel_capacity_;
@@ -38,8 +34,6 @@ class Car : public Auto {
     {}
     ~Car() = default;
 
-    virtual void printOwnValue(std::ofstream& output) const override final;
-
   private:
     short speed_;
 };
@@ -52,8 +46,6 @@ class Bus : public Auto {
     {}
     ~Bus() = default;
 
-    virtual void printOwnValue(std::ofstream& output) const override final;
-
   private:
     short passangers_;
 };
@@ -65,8 +57,6 @@ class Truck : public Auto {
       weight_(weight)
     {}
     ~Truck() = default;
-
-    virtual void printOwnValue(std::ofstream& output) const override final;
 
   private:
     int weight_;
