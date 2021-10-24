@@ -85,8 +85,6 @@ class InteractiveController {
 namespace sorting {
   bool compare(Auto* lhs, Auto* rhs);
 
-  void smartFill(const Auto& l, Auto& r);
-
   void swap(Auto*& l, Auto*& r);
 
   void inclusionSort(Container& container);
