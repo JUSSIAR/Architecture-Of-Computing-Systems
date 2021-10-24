@@ -1,0 +1,6 @@
+Truck maxDistance = 66.666667
+Bus maxDistance = 90.909091
+Car maxDistance = 100.000000
+Bus maxDistance = 212.765957
+Car maxDistance = 379.310345
+Car maxDistance = 3400.000000
