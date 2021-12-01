@@ -1,7 +1,7 @@
 # dir
-SRC = ./src/
-BUILD = ./build/
-BIN = ./bin/
+SRC = src/
+BUILD = build/
+BIN = bin/
 
 # extentions
 CEXT = .c
@@ -10,11 +10,12 @@ OEXT = .o
 
 # sorce files
 CFILE = source
-AFILE = code
+AFUNC = func
+ASORT = sort
 EFILE = exec
 
 # build flags
-ASM_FLAGS =  -f elf64
+NASM_FLAGS =  -f elf64
 LINK_FLAGS = -no-pie -Wall -g -c
 EXEC_FLAGS = -no-pie
 
@@ -23,14 +24,17 @@ START_MESSAGE = "Process started"
 FINISH_MESSAGE = "Process finished"
 
 
-build_asm:
-	nasm $(ASM_FLAGS) $(SRC)$(AFILE)$(AEXT) -o $(BUILD)$(AFILE)$(OEXT)
+build_nasm_func:
+	nasm $(NASM_FLAGS) $(SRC)$(AFUNC)$(AEXT) -o $(BUILD)$(AFUNC)$(OEXT)
 
-build_linked:
+build_nasm_sort:
+	nasm $(NASM_FLAGS) $(SRC)$(ASORT)$(AEXT) -o $(BUILD)$(ASORT)$(OEXT)
+
+build_source_c:
 	gcc $(LINK_FLAGS) $(SRC)$(CFILE)$(CEXT) -o $(BUILD)$(CFILE)$(OEXT)
 
 build_exec:
-	gcc $(EXEC_FLAGS) -o $(BIN)$(EFILE) $(BUILD)$(CFILE)$(OEXT) $(BUILD)$(AFILE)$(OEXT)
+	gcc $(EXEC_FLAGS) -o $(BIN)$(EFILE) $(BUILD)$(CFILE)$(OEXT) $(BUILD)$(AFUNC)$(OEXT) $(BUILD)$(ASORT)$(OEXT)
 
 run_exec:
 	./$(BIN)$(EFILE)
@@ -43,10 +47,10 @@ clear:
 
 process_only:
 	make clear
-	make build_asm
-	make build_linked
+	make build_nasm_func
+	make build_nasm_sort
+	make build_source_c
 	make build_exec
-	make run_exec
 
 process:
 	echo $(START_MESSAGE)
