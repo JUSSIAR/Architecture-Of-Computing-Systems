@@ -18,7 +18,7 @@ struct Reader {
         std::string row;
         getline(stream, row);
         auto response = Parser::validCheckParser(row);
-        if (response.first) {
+        if (!response.first) {
             return 0;
         }
         return response.second;

@@ -19,6 +19,9 @@ public:
         for (size_t i = 0; i < kSize; ++i) {
             good.push_back(i);
         }
+        for (size_t i = 0; i < kSize / 2; ++i) {
+            bad.push_back(getRandomFlower(good));
+        }
     }
 
     void fixRandomBad(size_t number) {
