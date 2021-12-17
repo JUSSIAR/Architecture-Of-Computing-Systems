@@ -12,7 +12,7 @@ OEXT = .o
 CFILE = source
 AFUNC = func
 ASORT = sort
-EFILE = exec
+EFILE = exec1
 
 # build flags
 NASM_FLAGS =  -f elf64
@@ -40,8 +40,8 @@ run_exec:
 	./$(BIN)$(EFILE)
 
 clear:
-	rm -rf bin/
-	mkdir bin/
+#	rm -rf bin/
+#	mkdir bin/
 	rm -rf build/
 	mkdir build/
 

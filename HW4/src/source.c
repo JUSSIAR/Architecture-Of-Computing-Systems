@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 struct Auto {
     int capacity;
@@ -26,9 +27,9 @@ void input(FILE* in, int size, struct Auto* container) {
 void output(FILE* out, int size, struct Auto* container) {
     for (int item = 0; item < size; item++) {
         printf(
-            "%s maxDistance = %lf\n",
-            names[container[item].transport - 1],
-            func(&container[item].spending, container[item].capacity)
+                "%s maxDistance = %lf\n",
+                names[container[item].transport - 1],
+                func(&container[item].spending, container[item].capacity)
         );
     }
 }
@@ -58,28 +59,55 @@ void sort(struct Auto* container, int size) {
     }
 }
 
+double val1, val2;
+
+double func1(double* x, int y) {
+    val1 = (double)y;
+    val2 = *x;
+    return val1 * 100 / val2;
+}
+
 int main(int argc, char** argv) {
     int size;
     struct Auto* container = NULL;
 
+    int LN = 1e9;
+    double DB = 3.4;
+
+    double c1 = clock();
+
+    for (int i = 0; i < LN; ++i) {
+        func1(&DB, i);
+    }
+
+    double c2 = clock();
+    printf("%lf\n", (c2 - c1) / CLOCKS_PER_SEC);
+
+    for (int i = 0; i < LN; ++i) {
+        func(&DB, i);
+    }
+
+    double c3 = clock();
+    printf("%lf\n", (c3 - c2) / CLOCKS_PER_SEC);
+
 //    FILE* in = fopen("../tests/test-suits/generated/test1.txt", "r");
 //    FILE* out = fopen("../results/generated/result1.txt", "w");
-    FILE* in = fopen(argv[1], "r");
-    FILE* out = fopen(argv[2], "w");
-
-    fscanf(in, "%d\n", &size);
-    container = malloc(sizeof(struct Auto) * size);
-    input(in, size, container);
-
-    calc(container, size);
-    sort(container, size);
-
-    output(out, size, container);
-    free(container);
-    container = NULL;
-
-    fclose(in);
-    fclose(out);
+//    FILE* in = fopen(argv[1], "r");
+//    FILE* out = fopen(argv[2], "w");
+//
+//    fscanf(in, "%d\n", &size);
+//    container = malloc(sizeof(struct Auto) * size);
+//    input(in, size, container);
+//
+//    calc(container, size);
+//    sort(container, size);
+//
+//    output(out, size, container);
+//    free(container);
+//    container = NULL;
+//
+//    fclose(in);
+//    fclose(out);
 
     return 0;
 }
