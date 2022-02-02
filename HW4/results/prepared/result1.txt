@@ -1,0 +1,2 @@
+Truck maxDistance = 66.666667
+Car maxDistance = 100.000000
